@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const [text, setText] = useState("Enter your text");
+  const [text, setText] = useState("");
   const handleUpClick = () => {
     // console.log("Uppercase was cliked" + text);
     let newText = text.toUpperCase();
@@ -22,9 +22,15 @@ export default function TextForm(props) {
     // console.log("on Change");
     setText(event.target.value);
   };
+
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          color: props.mode === "light" ? "black" : "white",
+        }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -32,6 +38,11 @@ export default function TextForm(props) {
             id="myBox"
             rows="8"
             value={text}
+            placeholder="Enter your text"
+            style={{
+              backgroundColor: props.mode === "light" ? "white" : "grey",
+              color: props.mode === "light" ? "black" : "white",
+            }}
             onChange={handleOnChange}
           ></textarea>
         </div>
@@ -46,7 +57,12 @@ export default function TextForm(props) {
         </button>
       </div>
 
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          color: props.mode === "light" ? "black" : "white",
+        }}
+      >
         <h1>Your Text summary</h1>
         <p>
           {text.split(" ").length} words and {text.length} characters
